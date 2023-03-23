@@ -7,8 +7,6 @@
 
 module GetFlag (display_param, default_param, init_param, Param (..)) where
 
-import Text.Read
-
 data Param = Param {
     number :: Int,
     limit :: Float,

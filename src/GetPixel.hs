@@ -13,13 +13,19 @@ module GetPixel (init_pixel, default_pixel, display_pixel, Pixel (..)) where
 import GetFlag
 
 data Pixel = Pixel {
-    pos::[(Int, Int)],
-    pix::[(Int, Int, Int)]
+    pos::(Int, Int),
+    pix::(Int, Int, Int)
 } deriving (Eq, Show)
 
+check_pixel :: Int -> String -> Bool
+check_pixel count [] | count == 2 = True
+                     | otherwise = False
+check_pixel count (x:xs) | x == '(' = check_pixel (count + 1) xs
+                         | otherwise = check_pixel count xs
+
 pars_file :: [Pixel] -> String -> [Pixel]
-pars_file pixel [] = pixel
-pars_file pixel (x:xs) = [Pixel {pos = [(1, 2)], pix = [(3, 4, 5)]}]
+pars_file pixel str | check_pixel 0 str = [Pixel {pos = (1, 2), pix = (3, 4, 5)}]
+                    | otherwise = []
 
 init_pixel :: Param -> [Pixel] -> [String] -> [Pixel]
 init_pixel param pixel [] = pixel
@@ -33,5 +39,4 @@ default_pixel :: [Pixel]
 default_pixel = []
 
 display_pixel :: [Pixel] -> IO ()
-display_pixel [] = putStrLn "END\n";
-display_pixel (x:xs) = putStrLn (show x) >> display_pixel xs
+display_pixel = foldr ((>>) . print) (putStrLn "END\n")
