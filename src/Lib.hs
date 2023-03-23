@@ -11,6 +11,7 @@ import System.Environment (getArgs)
 import System.Exit ( exitSuccess )
 import GetFlag
 import GetPixel
+import Algo
 
 my_image_compressor :: IO ()
 my_image_compressor = do
@@ -20,4 +21,5 @@ my_image_compressor = do
     let pixel = init_pixel param default_pixel (lines buffer)
     display_param param
     display_pixel pixel
+    cluster <- createRandomCluster (number param) [] pixel
     exitSuccess

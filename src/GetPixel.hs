@@ -36,10 +36,6 @@ init_pixel :: Param -> [Pixel] -> [String] -> [Pixel]
 init_pixel param pixel [] = pixel
 init_pixel param pixel (x:xs) = init_pixel param (pixel ++ pars_file x) xs
 
--- display_array :: [String] -> IO ()
--- display_array [] = putStrLn "END\n";
--- display_array (x:xs) = putStrLn x >> display_array xs
-
 default_pixel :: [Pixel]
 default_pixel = []
 
