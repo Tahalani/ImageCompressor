@@ -4,6 +4,7 @@
 -- File description:
 -- image compressor
 --}
+
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 {-# HLINT ignore "Use camelCase" #-}
 {-# OPTIONS_GHC -Wno-unused-matches #-}
@@ -17,19 +18,23 @@ data Pixel = Pixel {
     pix::(Int, Int, Int)
 } deriving (Eq, Show)
 
+
 check_pixel :: Int -> String -> Bool
 check_pixel count [] | count == 2 = True
                      | otherwise = False
 check_pixel count (x:xs) | x == '(' = check_pixel (count + 1) xs
                          | otherwise = check_pixel count xs
 
-pars_file :: [Pixel] -> String -> [Pixel]
-pars_file pixel str | check_pixel 0 str = [Pixel {pos = (1, 2), pix = (3, 4, 5)}]
-                    | otherwise = []
+getPixel :: [String] -> Pixel
+getPixel [coord, pixel] = Pixel {pos = read coord, pix = read pixel}
+
+pars_file :: String -> [Pixel]
+pars_file str | check_pixel 0 str = [getPixel (words str)]
+              | otherwise = []
 
 init_pixel :: Param -> [Pixel] -> [String] -> [Pixel]
 init_pixel param pixel [] = pixel
-init_pixel param pixel (x:xs) = init_pixel param (pixel ++ pars_file pixel x) xs
+init_pixel param pixel (x:xs) = init_pixel param (pixel ++ pars_file x) xs
 
 -- display_array :: [String] -> IO ()
 -- display_array [] = putStrLn "END\n";
