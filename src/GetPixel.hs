@@ -18,7 +18,6 @@ data Pixel = Pixel {
     pix::(Int, Int, Int)
 } deriving (Eq, Show)
 
-
 check_pixel :: Int -> String -> Bool
 check_pixel count [] | count == 2 = True
                      | otherwise = False
