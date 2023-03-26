@@ -19,6 +19,7 @@ my_image_compressor = do
     let param = init_param args default_param
     buffer <- readFile (file param)
     let pixel = init_pixel param default_pixel (lines buffer)
-    cluster <- createRandomCluster (number param) [] pixel
-    mainLoop cluster (replaceCluster cluster) pixel (limit param)
+    cluster <- createRandomCluster (number param) pixel []
+    mainLoop cluster (averageColor (addToCluster cluster pixel) [])
+                                    pixel (limit param)
     exitSuccess

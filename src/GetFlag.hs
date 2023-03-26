@@ -5,7 +5,10 @@
 -- image compressor
 --}
 
-module GetFlag (display_param, default_param, init_param, Param (..)) where
+module GetFlag (display_param,
+                default_param,
+                init_param,
+                Param (..)) where
 
 data Param = Param {
     number :: Int,

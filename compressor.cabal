@@ -14,9 +14,6 @@ maintainer:     example@example.com
 copyright:      2023 Author name here
 license:        BSD3
 build-type:     Simple
-extra-source-files:
-    README.md
-    CHANGELOG.md
 
 source-repository head
   type: git
