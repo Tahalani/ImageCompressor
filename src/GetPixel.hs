@@ -4,11 +4,6 @@
 -- File description:
 -- image compressor
 --}
-    
-{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
-{-# HLINT ignore "Use camelCase" #-}
-{-# OPTIONS_GHC -Wno-unused-matches #-}
-{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
 
 module GetPixel (init_pixel,
                 default_pixel,
@@ -29,13 +24,14 @@ check_pixel count (x:xs) | x == '(' = check_pixel (count + 1) xs
 
 getPixel :: [String] -> Pixel
 getPixel [coord, pixel] = Pixel {pos = read coord, pix = read pixel}
+getPixel _ = Pixel {pos = (0, 0), pix = (0, 0, 0)}
 
 pars_file :: String -> [Pixel]
 pars_file str | check_pixel 0 str = [getPixel (words str)]
               | otherwise = []
 
 init_pixel :: Param -> [Pixel] -> [String] -> [Pixel]
-init_pixel param pixel [] = pixel
+init_pixel _ pixel [] = pixel
 init_pixel param pixel (x:xs) = init_pixel param (pixel ++ pars_file x) xs
 
 default_pixel :: [Pixel]

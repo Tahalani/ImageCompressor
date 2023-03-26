@@ -25,6 +25,7 @@ init_param ("-l":sec:list) (Param n _ f) =
 init_param ("-f":sec:list) (Param n l _) =
     init_param list (Param n l sec)
 init_param (_:_:_) (Param n l f) = (Param n l f)
+init_param [_] (Param n l f) = (Param n l f)
 
 default_param :: Param
 default_param = Param {number = 0, limit = 0, file = "test.txt"}

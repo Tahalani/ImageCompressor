@@ -87,6 +87,7 @@ checkLim [] [] _ = True
 checkLim (a:as) (b:bs) lim
         | ((calculDistance (colors a) (colors b)) > lim) = False
         | otherwise = checkLim as bs lim
+checkLim _ _ _ = False
 
 mainLoop :: [Cluster] -> [Cluster] -> [Pixel] -> Float -> IO ()
 mainLoop old new list lim |
