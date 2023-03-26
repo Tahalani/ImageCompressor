@@ -4,20 +4,22 @@
 -- File description:
 -- image compressor
 --}
-
+    
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 {-# HLINT ignore "Use camelCase" #-}
 {-# OPTIONS_GHC -Wno-unused-matches #-}
 {-# OPTIONS_GHC -Wno-incomplete-patterns #-}
 
-module GetPixel (init_pixel, default_pixel, display_pixel, Pixel (..)) where
+module GetPixel (init_pixel,
+                default_pixel,
+                display_pixel,
+                Pixel (..)) where
 import GetFlag
 
 data Pixel = Pixel {
     pos::(Int, Int),
     pix::(Int, Int, Int)
 } deriving (Eq, Show)
-
 
 check_pixel :: Int -> String -> Bool
 check_pixel count [] | count == 2 = True
