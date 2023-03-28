@@ -29,3 +29,4 @@ handle_args (a:_:_)  | checkBuffer [a] == False =
 handle_args (a:b:xs) | checkDigits a b == False =
             putStrLn "Error: Bad args" >> exitWith(ExitFailure 84)
                      | otherwise = handle_args xs
+handle_args (_:_) = putStrLn "Error: Bad flags" >> exitWith(ExitFailure 84)
