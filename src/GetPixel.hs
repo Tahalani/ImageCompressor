@@ -7,7 +7,6 @@
 
 module GetPixel (init_pixel,
                 default_pixel,
-                display_pixel,
                 Pixel (..)) where
 import GetFlag
 
@@ -17,10 +16,10 @@ data Pixel = Pixel {
 } deriving (Eq, Show)
 
 check_pixel :: Int -> String -> Bool
-check_pixel count [] | count == 2 = True
-                     | otherwise = False
-check_pixel count (x:xs) | x == '(' = check_pixel (count + 1) xs
-                         | otherwise = check_pixel count xs
+check_pixel 2 [] = True
+check_pixel _ [] = False
+check_pixel count ('(':xs) = check_pixel (count + 1) xs
+check_pixel count (_:xs) = check_pixel count xs
 
 getPixel :: [String] -> Pixel
 getPixel [coord, pixel] = Pixel {pos = read coord, pix = read pixel}
@@ -36,6 +35,3 @@ init_pixel param pixel (x:xs) = init_pixel param (pixel ++ pars_file x) xs
 
 default_pixel :: [Pixel]
 default_pixel = []
-
-display_pixel :: [Pixel] -> IO ()
-display_pixel = foldr ((>>) . print) (putStrLn "END\n")

@@ -24,6 +24,7 @@ library
       Algo
       GetFlag
       GetPixel
+      ErrorHandling
       Lib
   other-modules:
       Paths_compressor

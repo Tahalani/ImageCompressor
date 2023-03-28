@@ -5,8 +5,7 @@
 -- image compressor
 --}
 
-module GetFlag (display_param,
-                default_param,
+module GetFlag (default_param,
                 init_param,
                 Param (..)) where
 
@@ -29,9 +28,3 @@ init_param [_] (Param n l f) = (Param n l f)
 
 default_param :: Param
 default_param = Param {number = 0, limit = 0, file = "test.txt"}
-
-display_param :: Param -> IO ()
-display_param param = do
-    putStrLn $ "number: " ++ (show $ number param)
-    putStrLn $ "limit: " ++ show (limit param)
-    putStrLn $ "file: " ++ file param
