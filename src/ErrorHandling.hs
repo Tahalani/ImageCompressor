@@ -18,7 +18,7 @@ checkDigits flags (x:xs) | x < '0' || x > '9' = False
 
 checkBuffer :: [String] -> Bool
 checkBuffer [] = True
-checkBuffer (x:xs) | elem x ["-n", "-l", "-f", "-N", "-L", "-F"] == True
+checkBuffer (x:xs) | elem x ["-n", "-l", "-f"] == True
                     = checkBuffer xs
                    | otherwise = False
 
